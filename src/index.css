@@ -18,23 +18,54 @@ a {
   color: white;
 }
 
+.search-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  padding: 1rem 0 0.5rem;
+  background: inherit;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.search-input {
+  width: min(420px, 80%);
+  padding: 0.65rem 3rem 0.65rem 2.75rem;
+  border-radius: 12px;
+  border: none;
+  background: #2d2d2d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  font-size: 1rem;
+  color: #fff;
+}
+
+.search-input::placeholder {
+  color: #888;
+}
+
+.search-input:focus-visible {
+  outline: 2px solid #4fa3ff;
+  box-shadow: var(--shadow-hover);
+}
+
 .character-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  padding: 50px;
+  gap: 24px;
+  padding: 2rem;
   width: 100%;
 }
 
 .character-card {
-  border: 1px solid #ccc;
-  margin: 6px;
-  padding-top: 6px;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: (--radius);
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
 }
 .character-card:hover {
   transform: scale(1.05);
@@ -47,8 +78,17 @@ a {
 
 .character-card img {
   max-width: 100%;
-  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   display: block;
+}
+
+.character-card h3 {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .modal-content {

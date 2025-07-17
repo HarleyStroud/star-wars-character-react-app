@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import type { ChangeEvent } from 'react';
 
 type Person = {
   name: string;
@@ -120,6 +121,8 @@ function App() {
   const [selectedPersonFilms, setSelectedPersonFilms] = useState<Film[]>([]);
   const [homeworld, setHomeworld] = useState<Homeworld | null>(null);
   const [modalLoading, setModalLoading] = useState(false);
+  const [searchCharacter, setSearchCharacter] = useState('');
+  const [filteredCharacters, setFilteredCharacters] = useState<Person[]>([]);
 
   useEffect(() => {
     (async function loadAllCharacters() {
@@ -138,6 +141,8 @@ function App() {
           )}/200`,
         }));
 
+        // Add all characters to the filtered users state so that all characters are displayed when app starts
+        setFilteredCharacters(allCharacters);
         setPeople(allCharacters);
       } catch (error) {
         setError(error as Error);
@@ -152,6 +157,15 @@ function App() {
     console.log(error);
     return <p>A network error was encountered</p>;
   }
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = e.target.value;
+    setSearchCharacter(searchTerm);
+    const filteredPeople = people.filter((person) =>
+      person.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCharacters(filteredPeople);
+  };
 
   const handleCardClick = async (person: Person) => {
     setSelectedPerson(person);
@@ -183,30 +197,42 @@ function App() {
   };
 
   return (
-    <div className="character-container">
-      {people.map((person) => (
-        <div
-          className="character-card"
-          key={person.name}
-          onClick={() => handleCardClick(person)}
-        >
-          <p>{person.name}</p>
-          <img src={person.photo} alt={person.name} />
-        </div>
-      ))}
-
-      {selectedPerson && (
-        <Modal
-          person={selectedPerson}
-          films={selectedPersonFilms}
-          homeworld={homeworld}
-          loading={modalLoading}
-          onClose={() => {
-            setSelectedPerson(null);
-            setHomeworld(null);
-          }}
+    <div>
+      <div className="search-wrapper">
+        <input
+          className="search-input"
+          type="text"
+          value={searchCharacter}
+          onChange={handleInputChange}
+          placeholder="Search character"
         />
-      )}
+      </div>
+
+      <div className="character-container">
+        {filteredCharacters.map((person) => (
+          <div
+            className="character-card"
+            key={person.name}
+            onClick={() => handleCardClick(person)}
+          >
+            <p>{person.name}</p>
+            <img src={person.photo} alt={person.name} />
+          </div>
+        ))}
+
+        {selectedPerson && (
+          <Modal
+            person={selectedPerson}
+            films={selectedPersonFilms}
+            homeworld={homeworld}
+            loading={modalLoading}
+            onClose={() => {
+              setSelectedPerson(null);
+              setHomeworld(null);
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }
