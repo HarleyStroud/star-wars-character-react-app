@@ -7,9 +7,9 @@
 }
 
 body {
-  font-family: sans-serif;
-  width: 100%;
-  height: 100vh;
+  background: linear-gradient(#090909, #111);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
@@ -61,9 +61,9 @@ a {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border-radius: (--radius);
-  background: var(--bg-card);
-  box-shadow: var(--shadow);
+  border-radius: 12px;
+  background: #1e1e1e;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35) inset;
   cursor: pointer;
   transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
 }
@@ -80,7 +80,6 @@ a {
   max-width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  display: block;
 }
 
 .character-card h3 {
@@ -88,36 +87,86 @@ a {
   padding: 0.75rem 1rem;
   font-size: 1rem;
   text-align: center;
-  line-height: 1.35;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
   position: relative;
+  width: min(560px, 100%);
+  max-height: 82vh;
+  line-height: 1.5;
+  overflow: auto;
+  padding: 2rem 1.75rem 2.25rem;
+  border-radius: 16px;
+  background: #1e1e1e;
+  color: #fff;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.modal-content h2 {
+  margin-bottom: 1rem;
+}
+
+.modal-content h3 {
+  margin: 1.25rem 0 0.5rem;
+}
+
+.modal-content section + section {
+  margin-top: 1.5rem;
+}
+
+.character-details dl {
+  row-gap: 0.5rem;
+}
+
+.modal-content ul {
+  padding-left: 1.25rem;
 }
 
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 4vh 1rem;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
   z-index: 1000;
 }
 
 .modal-close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 16px;
+  top: 14px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #bbb;
+  cursor: pointer;
+  transition: color 0.12s ease;
+}
+.modal-close-button:hover,
+.modal-close-button:focus-visible {
+  color: #fff;
+}
+
+.character-details dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  margin: 0;
+}
+.character-details dt {
+  font-weight: 600;
+}
+.character-details dd {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding-left: 1.1rem;
 }

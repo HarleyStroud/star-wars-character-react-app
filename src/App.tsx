@@ -72,42 +72,58 @@ function Modal({ person, films, homeworld, onClose, loading }: ModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <button className="modal-close-button" onClick={onClose}>
-          Close
+          x
         </button>
-        <h2>{person.name}</h2>
-        <p>
-          <strong>Height:</strong> {person.height}
-        </p>
-        <p>
-          <strong>Mass:</strong> {person.mass}
-        </p>
-        <p>
-          <strong>Hair Color:</strong> {person.hair_color}
-        </p>
-        <p>
-          <strong>Skin Color:</strong> {person.skin_color}
-        </p>
+        <h2 className="character-title">{person.name}</h2>
 
-        {loading ? (
-          <p>Loading additional details...</p>
-        ) : (
-          <>
-            <h3>Films</h3>
-            <ul>
-              {films.map((film) => (
-                <li key={film.episode_id}>{film.title}</li>
-              ))}
-            </ul>
-            <h3>Homeworld</h3>
-            {homeworld ? (
-              <p>
-                {homeworld.name} (Population: {homeworld.population})
-              </p>
-            ) : (
-              <p>No homeworld data available</p>
-            )}
-          </>
-        )}
+        <section className="character-details">
+          <dl>
+            <div>
+              <dt>Height</dt>
+              <dd>{person.height} cm</dd>
+            </div>
+            <div>
+              <dt>Mass</dt>
+              <dd>{person.mass} kg</dd>
+            </div>
+            <div>
+              <dt>Hair</dt>
+              <dd>{person.hair_color}</dd>
+            </div>
+            <div>
+              <dt>Skin</dt>
+              <dd>{person.skin_color}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section>
+          {loading ? (
+            <p>Loading additional details...</p>
+          ) : (
+            <>
+              <section>
+                <h3>Films</h3>
+                <ul>
+                  {films.map((film) => (
+                    <li key={film.episode_id}>{film.title}</li>
+                  ))}
+                </ul>
+              </section>
+
+              <section>
+                <h3>Homeworld</h3>
+                {homeworld ? (
+                  <p>
+                    {homeworld.name} (Population: {homeworld.population})
+                  </p>
+                ) : (
+                  <p>No homeworld data available</p>
+                )}
+              </section>
+            </>
+          )}
+        </section>
       </div>
     </div>
   );
