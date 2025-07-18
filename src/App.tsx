@@ -71,7 +71,11 @@ function Modal({ person, films, homeworld, onClose, loading }: ModalProps) {
         data-testid="modal-content"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal-close-button" onClick={onClose}>
+        <button
+          className="modal-close-button"
+          aria-label="Close"
+          onClick={onClose}
+        >
           x
         </button>
         <h2 className="character-title">{person.name}</h2>
@@ -79,8 +83,7 @@ function Modal({ person, films, homeworld, onClose, loading }: ModalProps) {
         <section className="character-details">
           <dl>
             <div>
-              <dt>Height</dt>
-              <dd>{person.height} cm</dd>
+              <dt>Height:</dt> <dd>{person.height} cm</dd>
             </div>
             <div>
               <dt>Mass</dt>
