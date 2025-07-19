@@ -1,5 +1,8 @@
 # Star Wars Character App
 
+<img width="1917" height="912" alt="image" src="https://github.com/user-attachments/assets/32fc3d7e-d086-46c2-a55d-c2410a82c77b" />
+
+
 ### **Live preview** of the project is [here](https://star-wars-character-app.netlify.app/).
 
 ## Features
