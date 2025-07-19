@@ -2,8 +2,6 @@
 
 ### **Live preview** of the project is [here](https://star-wars-character-app.netlify.app/).
 
-====
-
 ## Features
 
 - This project is an Interactive React + TypeScript app that pulls Star Wars characters from the SWAPI (https://swapi.info/) and displays character details with live search/filter.
@@ -41,3 +39,4 @@ npm run dev
 # run tests
 npm run test
 ```
+
